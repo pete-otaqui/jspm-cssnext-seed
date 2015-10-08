@@ -10,7 +10,7 @@ This project may help you get started with JSPM and CSSNext. It provides:
 *   Management of `<script>` and `<link rel="stylesheet" />` tags in your HTML.
 *   Source and packaged code browsing from the same directory*.
 
-* This is something of a bug-and-a-feature together. You will need to export just the bundled code on actual deployment. This sacrifice makes the development-time experience much better, and is pretty straightforward since you are hopefully only talking about a few changing files.
+\* This is something of a bug-and-a-feature together. You will need to export just the bundled code on actual deployment. This sacrifice makes the development-time experience much better, and is pretty straightforward since you are hopefully only talking about a few changing files.
 
 This seed project is only targeted at POSIX environments (e.g. Linux / OS X), because the author was lazy and used some shell scripting in the npm commands.
 
