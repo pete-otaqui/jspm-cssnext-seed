@@ -1,7 +1,7 @@
 {
   "name": "bundle-pipeline-2-allin",
   "version": "0.1.0",
-  "description": "A seed project for jspm and cssnext",
+  "description": "A seed project for jspm and cssnext.",
   "author": "Pete Otaqui <pete@otaqui.com>",
   "license": "MIT",
   "repository": "https://github.com/pete-otaqui/jspm-cssnext-seed",
