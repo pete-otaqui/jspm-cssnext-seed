@@ -54,14 +54,21 @@
 
   <h3><code>npm run bundle</code></h3>
   <ul>
-    <li>Calls <code>npm run bundle-main</code></li>
-    <li>Calls <code>npm run bundle-concat</code></li>
+    <li>Calls <code>npm run bundle-js</code></li>
     <li>Calls <code>npm run bundle-html</code></li>
     <li>Calls <code>npm run bundle-styles</code></li>
     <li>
-      Since packaging the excluded dependencies is slow, and they rarely
-      change, this may be your default command or refreshing the built
-      code.
+      This may be the best command for refreshing the built code.
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-js</code></h3>
+  <ul>
+    <li>Calls <code>npm run bundle-main</code></li>
+    <li>Calls <code>npm run bundle-concat</code></li>
+    <li>
+      If you're finding <code>npm run bundle</code> a bit slow due to
+      the css part, this may speed things up for you.
     </li>
   </ul>
 

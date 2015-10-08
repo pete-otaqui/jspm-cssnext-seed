@@ -1,2 +1,9 @@
+/*
+
+MAIN CSS ENTRY POINT
+
+This file should only @import other files.
+
+*/
 @import 'normalize.css';
 @import 'custom.css';

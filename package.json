@@ -8,14 +8,15 @@
   "main": "index-src.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "npm run bundle-html && npm run bundle-styles && npm run bundle-main && npm run bundle-concat",
+    "bundle": "npm run bundle-html && npm run bundle-styles && npm run bundle-js",
+    "bundle-js": "npm run bundle-main && npm run bundle-concat",
+    "bundle-all": "npm run clean; npm run bundle-deps && npm run bundle",
     "bundle-main": "jspm bundle js/main - react - lodash bundle-main.js --minify",
     "bundle-deps": "jspm bundle react + lodash bundle-deps.js --minify",
     "bundle-concat": "cat jspm_packages/system.js > bundle.js && echo \"\" >> bundle.js && cat config.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-deps.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-main.js >> bundle.js",
     "bundle-html": "./npm-scripts/html.js",
     "bundle-styles": "./npm-scripts/styles.js",
     "clean": "rm bundle* || echo \"No javascript to clean\"; rm styles/bundle* || echo \"No styles to clean\"; rm index.html || echo \"No html to clean\"",
-    "bundle-all": "npm run clean; npm run bundle-deps && npm run bundle",
     "postinstall": "jspm install && npm run bundle-all"
   },
   "devDependencies": {
