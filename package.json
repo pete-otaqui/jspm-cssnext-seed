@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "npm run bundle-html && npm run bundle-main && npm run bundle-concat",
-    "bundle-main": "./node_modules/.bin/jspm bundle lib/main - react - lodash bundle-main.js --minify",
-    "bundle-deps": "./node_modules/.bin/jspm bundle react + lodash bundle-deps.js --minify",
+    "bundle": "npm run bundle-html && npm run bundle-styles && npm run bundle-main && npm run bundle-concat",
+    "bundle-main": "jspm bundle lib/main - react - lodash bundle-main.js --minify",
+    "bundle-deps": "jspm bundle react + lodash bundle-deps.js --minify",
     "bundle-concat": "cat jspm_packages/system.js > bundle.js && echo \"\" >> bundle.js && cat config.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-deps.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-main.js >> bundle.js",
     "bundle-html": "./npm-scripts/html.js",
     "bundle-styles": "./npm-scripts/styles.js"
@@ -16,7 +16,6 @@
   "license": "ISC",
   "devDependencies": {
     "cssnext": "^1.8.4",
-    "eslint-plugin-html": "^1.0.4",
     "jspm": "^0.16.11",
     "node-useref": "^0.3.15"
   },

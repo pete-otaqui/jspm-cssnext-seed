@@ -13,7 +13,7 @@ var input = fs.readFileSync(path + mainCssFile, "utf8");
 var output = cssnext(input, {
   from: path + mainCssFile,
   to: path + bundleCssFile,
-  compress: false,
+  compress: true,
   map: {inline: false}
 });
 
