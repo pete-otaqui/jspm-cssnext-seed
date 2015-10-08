@@ -31,6 +31,10 @@
 
   <p>One of the key parts of this setup relies on you adding rarely-changing dependencies to the list of "excluded" packages in the <code>npm run bundle-main</code> command.  This uses JSPM pacakge arithmetic, in the form: <code>jspm bundle js/main - react - lodash</code>, which bundles your code and ignore (in this case) react and lodash.  You then need to make sure that these files <strong>are</strong> included in the <code>npm run bundle-deps</code> command, which is like so: <code>jspm bundle react + lodash</code>.  These commands are in the <code>package.json</code> file.</p>
 
+  <p>This is not a fantastic strategy for a serious project, but it's not bad for a quick-start, and should be very adaptable to whatever other build tool and configuration setup a team chooses for itself.  You could, for example, extract the npm commands out into <code>gulp</code> or native node scripts - and use a config file or environment variables to track which files should be treated as "excluded dependencies".</p>
+
+  <p>If you forget to add a dependency to this list nothing will break - but your build will be slower than necessary.</p>
+
   <h2>Installation</h2>
 
   <p>Checkout the project and run <code>npm install</code>.</p>
@@ -65,7 +69,7 @@
   <ul>
     <li>
       jspm bundles "excluded" dependencies into <code>bundle-deps.js</code>. If
-      you are have big libraries like react, this will probably be a bit slow.
+      you have big libraries like react, this will probably be a bit slow.
     </li>
   </ul>
 
