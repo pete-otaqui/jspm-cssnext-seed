@@ -16,11 +16,12 @@ a) using the built code or b) having a browser that understand the syntax.
 
 body {
   margin: 0 1em;
-  line-height: 1.4rem;
+  line-height: 1.6rem;
 }
 
 code {
   background-color: #ddd;
   padding: 4px 8px;
   border-radius: 4px;
+  white-space: pre-wrap;
 }
