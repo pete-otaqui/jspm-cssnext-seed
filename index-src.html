@@ -11,7 +11,7 @@
 
   <h1>JSPM and CSSNext Seed Project</h1>
 
-  <p>This project may help you get started with JSPM and CSSNext.  It provides:</p>
+  <p>This project may help you get started with <a href="http://jspm.io">JSPM</a> and <a href="http://cssnext.io">CSSNext</a>.  It provides:</p>
 
   <ul>
     <li>JSPM package management - allows you to use AMD, CJS and ES6 code in the same project.</li>
@@ -19,7 +19,7 @@
     <li>One built javascript file, containing System JS, your config, your dependencies, and your code.</li>
     <li>One built css file, processed and optimized with `cssnext`.</li>
     <li>Sourcemaps for JS and CSS.</li>
-    <li>Management of &lt;script&gt; and &gt;link rel="stylesheet" /&gt; tags in your HTML.</li>
+    <li>Management of &lt;script&gt; and &lt;link rel="stylesheet" /&gt; tags in your HTML.</li>
     <li>Source and packaged code browsing from the same directory*.</li>
   </ul>
 
@@ -35,9 +35,67 @@
 
   <p>If you forget to add a dependency to this list nothing will break - but your build will be slower than necessary.</p>
 
+  <h2>Project Structure</h2>
+
+  <p>The structure of this project may take a little getting used to, since it keeps both source and packaged files in the same directories.</p>
+
+  <p>Packaged files are normally called something along the lines of `bundle-foo.bar` or similar.  Here is the complete list:</p>
+
+  <ul>
+    <li><code>index.html</code></li>
+    <li><code>bundle-deps.js</code></li>
+    <li><code>bundle-deps.js.map</code></li>
+    <li><code>bundle-main.js</code></li>
+    <li><code>bundle-main.js.map</code></li>
+    <li><code>bundle.js</code></li>
+    <li><code>styles/bundle.css</code></li>
+    <li><code>styles/bundle.css.map</code></li>
+  </ul>
+
+  <p>You need all those files when developing against packaged code in order for the sourcemaps to function correctly.</p>
+
+  <p>The only files you actually need for deployment are:</p>
+
+  <ul>
+    <li><code>index.html</code></li>
+    <li><code>bundle.js</code></li>
+    <li><code>styles/bundle.css</code></li>
+  </ul>
+
+  <p>You might want to consider stripping the sourcemap references in the js and css files.</p>
+
+  <p>The main files to look at to start development are:</p>
+
+  <ul>
+    <li><code>js/main.js</code></li>
+    <li><code>styles/main.css</code></li>
+  </ul>
+
   <h2>Installation</h2>
 
-  <p>Checkout the project and run <code>npm install</code>.</p>
+  <p>Checkout the project and run <code>npm install</code>, which will in turn trigger <code>jspm install</code>.</p>
+
+  <h2>Adding Packages</h2>
+
+  <p>To get any more packages, use jspm:</p>
+
+  <pre><code>jspm install flux</code></pre>
+
+  <p>And import / require as you need.  Since we're using the magic of jspm and System.js, you can do this in AMD, CJS or ES6 style, like so:</p>
+
+  <pre><code>// ES6
+ import flux from 'flux';
+
+ // AMD
+ require(['flux'], function(flux) { /* ..... */ })
+
+ // CJS
+ var flux = require('flux');</code></pre>
+
+  <p>And don't forget to add those to the "excluded dependencies" in the npm `bundle-main` and `bundle-deps` commands, like so:</p>
+
+  <pre><code>"bundle-main": "jspm bundle js/main - react - lodash <strong>- flux</strong> bundle-main.js --minify",
+ "bundle-deps": "jspm bundle react + lodash <strong>+ flux</strong> bundle-deps.js --minify",</code></pre>
 
   <h2>Usage</h2>
 
