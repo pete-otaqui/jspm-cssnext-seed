@@ -1,6 +1,6 @@
 {
   "name": "jspm-cssnext-seed",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A seed project for jspm and cssnext.",
   "author": "Pete Otaqui <pete@otaqui.com>",
   "license": "MIT",
