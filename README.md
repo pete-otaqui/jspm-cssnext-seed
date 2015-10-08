@@ -51,6 +51,17 @@ Available commands:
 *   Calls `npm run bundle-concat`
 *   If you're finding `npm run bundle` a bit slow due to the css part, this may speed things up for you.
 
+### `npm run bundle-clean`
+
+*   Deletes `bundle-deps.js`
+*   Deletes `bundle-deps.js.map`
+*   Deletes `bundle-main.js`
+*   Deletes `bundle-main.js.map`
+*   Deletes `bundle.map`
+*   Deletes `index.html`
+*   Deletes `styles/bundle.css`
+*   Deletes `styles/bundle.css.map`
+
 ### `npm run bundle-deps`
 
 *   jspm bundles "excluded" dependencies into `bundle-deps.js`. If you have big libraries like react, this will probably be a bit slow.
