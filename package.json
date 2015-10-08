@@ -10,7 +10,9 @@
     "bundle-deps": "jspm bundle react + lodash bundle-deps.js --minify",
     "bundle-concat": "cat jspm_packages/system.js > bundle.js && echo \"\" >> bundle.js && cat config.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-deps.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-main.js >> bundle.js",
     "bundle-html": "./npm-scripts/html.js",
-    "bundle-styles": "./npm-scripts/styles.js"
+    "bundle-styles": "./npm-scripts/styles.js",
+    "clean": "rm bundle* || echo \"No javascript to clean\"; rm styles/bundle* || echo \"No styles to clean\"; rm index.html || echo \"No html to clean\"",
+    "bundle-all": "npm run clean; npm run bundle-deps && npm run bundle"
   },
   "author": "",
   "license": "ISC",
