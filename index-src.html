@@ -2,21 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bundle Pipeline 2 All In</title>
+  <title>JSPM and CSSNext Seed Project</title>
   <!-- build:css styles/bundle.css -->
   <link rel="stylesheet" href="styles/main.css" />
   <!-- endbuild -->
 </head>
 <body>
 
-  <h1>Bundle Pipeline 2 All In</h1>
+  <h1>JSPM and CSSNext Seed Project</h1>
+
+  <p>This project may help you get started with JSPM and CSSNext.  It provides:</p>
+
+  <ul>
+    <li>JSPM package management - allows you to use AMD, CJS and ES6 code in the same project.</li>
+    <li>Optimized development-time builds (are you bored of rebuilding dependencies like React over and over again?)</li>
+    <li>One built javascript file, containing System JS, your config, your dependencies, and your code.</li>
+    <li>One built css file, processed and optimized with `cssnext`.</li>
+    <li>Sourcemaps for JS and CSS.</li>
+    <li>Management of &lt;script&gt; and &gt;link rel="stylesheet" /&gt; tags in your HTML.</li>
+    <li>Source and packaged code browsing from the same directory*.</li>
+  </ul>
+
+  <p><small>* This is something of a bug-and-a-feature together.  You will need to export just the bundled code on actual deployment.  This sacrifice makes the development-time experience much better, and is pretty straightforward since you're hopefully only talking about a few changing files.</small></p>
+
+  <p>This seed project is only targeted at POSIX environments (e.g. Linux / OS X), because the author was lazy and used some shell scripting in the npm commands.</p>
+
+  <h2>Note about "excluded dependecies"</h2>
+
+  <p>One of the key parts of this setup relies on you adding rarely-changing dependencies to the list of "excluded" packages in the <code>npm run bundle-main</code> command.  This uses JSPM pacakge arithmetic, in the form: <code>jspm bundle js/main - react - lodash</code>, which bundles your code and ignore (in this case) react and lodash.  You then need to make sure that these files <strong>are</strong> included in the <code>npm run bundle-deps</code> command, which is like so: <code>jspm bundle react + lodash</code>.  These commands are in the <code>package.json</code> file.</p>
+
+  <h2>Installation</h2>
+
+  <p>Checkout the project and run <code>npm install</code>.</p>
+
+  <h2>Usage</h2>
+
+  <p>This project uses <code>npm</code> for build scripts.  It allows the user to decide on a more robust build tool if they need one, and such a tool can be adopted organically, gradually replacing parts as needed.</p>
+
+  <p>Available commands:</p>
+
+  <h3><code>npm run bundle-all</code></h3>
+  <ul>
+    <li>Calls <code>npm run clean</code></li>
+    <li>Calls <code>npm run bundle-deps</code></li>
+    <li>Calls <code>npm run bundle</code></li>
+  </ul>
+
+  <h3><code>npm run bundle</code></h3>
+  <ul>
+    <li>Calls <code>npm run bundle-main</code></li>
+    <li>Calls <code>npm run bundle-concat</code></li>
+    <li>Calls <code>npm run bundle-html</code></li>
+    <li>Calls <code>npm run bundle-styles</code></li>
+    <li>
+      Since packaging the excluded dependencies is slow, and they rarely
+      change, this may be your default command or refreshing the built
+      code.
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-deps</code></h3>
+  <ul>
+    <li>
+      jspm bundles "excluded" dependencies into <code>bundle-deps.js</code>. If
+      you are have big libraries like react, this will probably be a bit slow.
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-main</code></h3>
+  <ul>
+    <li>
+      jspm bundles <code>js/main.js</code>, minus the "excluded" packages, into
+      <code>bundle-main.js</code>
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-concat</code></h3>
+  <ul>
+    <li>
+      Concatenates <code>jspm_packages/system.js</code>,
+      <code>config.js</code>, <code>bundle-deps.js</code> and
+      <code>bundle-main.js</code> into <code>bundle.js</code>
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-styles</code></h3>
+  <ul>
+    <li>
+      Runs <code>styles/main.css</code> through cssnext, to create
+      <code>styles/bundle.css</code>.
+    </li>
+  </ul>
+
+  <h3><code>npm run bundle-html</code></h3>
+  <ul>
+    <li>
+      Applies <code>useref</code> to <code>index-src.html</code> to create
+      <code>index.html</code>, which only references the final bundle files.
+    </li>
+  </ul>
+
+
+
 
   <!-- build:js bundle.js -->
   <script src="jspm_packages/system.js"></script>
   <script src="config.js"></script>
   <!-- endbuild -->
 
-  <script>System.import('lib/main');</script>
+  <script>System.import('js/main');</script>
 
 </body>
 </html>

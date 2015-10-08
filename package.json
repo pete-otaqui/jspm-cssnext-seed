@@ -1,21 +1,23 @@
 {
   "name": "bundle-pipeline-2-allin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "A seed project for jspm and cssnext",
+  "author": "Pete Otaqui <pete@otaqui.com>",
+  "license": "MIT",
+  "repository": "https://github.com/pete-otaqui/jspm-cssnext-seed",
+  "main": "index-src.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "npm run bundle-html && npm run bundle-styles && npm run bundle-main && npm run bundle-concat",
-    "bundle-main": "jspm bundle lib/main - react - lodash bundle-main.js --minify",
+    "bundle-main": "jspm bundle js/main - react - lodash bundle-main.js --minify",
     "bundle-deps": "jspm bundle react + lodash bundle-deps.js --minify",
     "bundle-concat": "cat jspm_packages/system.js > bundle.js && echo \"\" >> bundle.js && cat config.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-deps.js >> bundle.js && echo \"\" >> bundle.js && cat bundle-main.js >> bundle.js",
     "bundle-html": "./npm-scripts/html.js",
     "bundle-styles": "./npm-scripts/styles.js",
     "clean": "rm bundle* || echo \"No javascript to clean\"; rm styles/bundle* || echo \"No styles to clean\"; rm index.html || echo \"No html to clean\"",
-    "bundle-all": "npm run clean; npm run bundle-deps && npm run bundle"
+    "bundle-all": "npm run clean; npm run bundle-deps && npm run bundle",
+    "postinstall": "jspm install && npm run bundle-all"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "cssnext": "^1.8.4",
     "jspm": "^0.16.11",
